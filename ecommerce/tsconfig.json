@@ -30,7 +30,7 @@
       "**/*.tsx",
       "**/*.css", 
       "**.*.js" 
-, "components/contact/ContactForm.jsx"    ],
+, "components/contact/ContactForm.jsx", "components/index.js"    ],
     "exclude": ["node_modules"]
   }
   
