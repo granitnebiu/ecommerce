@@ -29,3 +29,20 @@ export interface heroBannerData {
     }
   }
  }
+
+ export interface FooterBannerData{
+  discount: string;
+  largeText1: string;
+  largeText2: string; 
+  saleTime: string;
+  smallText: string, 
+  midText: string, 
+  description: string,
+  product: string, 
+  buttonText: string, 
+  image: {
+    asset: {
+      _ref: string
+    }
+  }
+ }
