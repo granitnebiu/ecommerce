@@ -3,6 +3,14 @@ export interface ProductsData {
     name: string;
     price: number;
     details: string; 
+    slug: {
+      current: string;
+    }
+    image: {
+      asset: {
+        _ref: string
+      }
+    }
  }
 
 export interface heroBannerData {
@@ -19,5 +27,5 @@ export interface heroBannerData {
     asset: {
       _ref: string
     }
-}
+  }
  }
