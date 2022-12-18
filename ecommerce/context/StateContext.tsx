@@ -70,12 +70,21 @@ export const StateContext = ({ children }) => {
     const newCartItems = cartItems.filter((item) => item._id !== id);
 
     if (value === "increment") {
-      setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
+      // Here we update the newCartItems array with the new product quantity at the correct index before updating the state with the new array
+      foundProduct = { ...foundProduct, quantity: foundProduct.quantity + 1 };
+
+      newCartItems.splice(index, 0, foundProduct);
+
       setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+      setCartItems(newCartItems);
     } else if (value === "decrement") {
       if (foundProduct.quantity > 1) {
-        setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
+        setCartItems(
+          cartItems.map((item, i) =>
+            i === index ? { ...foundProduct, quantity: foundProduct.quantity - 1 } : item
+          )
+        );
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
       }
