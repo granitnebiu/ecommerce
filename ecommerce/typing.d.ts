@@ -7,6 +7,8 @@ export interface ProductsData {
       current: string;
     }
     image: {
+      _key: number,
+      _type: string,
       asset: {
         _ref: string
       }

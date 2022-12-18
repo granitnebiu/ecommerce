@@ -1,11 +1,21 @@
 import Product from "@/Product";
+//using state contexts
+import { useMyStateContext } from "context/StateContext";
 import { clientSanity, urlFor } from "lib/sanity.client";
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from "react-icons/ai";
-export default function ProductDetails({ product, products }) {
+import { ProductsData } from "typing";
+
+interface Props {
+  product: ProductsData;
+  products: ProductsData[];
+}
+export default function ProductDetails({ product, products }: Props) {
   const { image, name, details, price } = product;
+  const { decreaseQuantity, increaseQuantity, qty, onAdd } = useMyStateContext();
 
   const [index, setIndex] = useState(0);
+
   return (
     <div>
       <div className="product-detail-container">
@@ -15,7 +25,7 @@ export default function ProductDetails({ product, products }) {
           </div>
 
           <div className="small-images-container">
-            {image?.map((item, i) => (
+            {Object.values(image)?.map((item, i) => (
               <img
                 src={urlFor(item).url()}
                 className={i === index ? "small-image selected-image" : "small-image"}
@@ -43,19 +53,19 @@ export default function ProductDetails({ product, products }) {
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
-              <span className="minus" onClick={() => {}}>
+              <span className="minus" onClick={decreaseQuantity}>
                 <AiOutlineMinus />
               </span>
               <span className="num" onClick={() => {}}>
-                0
+                {qty}
               </span>
-              <span className="plus" onClick={() => {}}>
+              <span className="plus" onClick={increaseQuantity}>
                 <AiOutlinePlus />
               </span>
             </p>
           </div>
           <div className="buttons">
-            <button className="add-to-cart" onClick={() => {}}>
+            <button className="add-to-cart" onClick={() => onAdd(product, qty)}>
               Add to Cart
             </button>
             <button className="buy-now" onClick={() => {}}>
