@@ -10,9 +10,9 @@ import { urlFor } from "lib/sanity.client";
 
 export default function Cart() {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity } =
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove } =
     useMyStateContext();
-  console.log(cartItems[0]._id);
+  // console.log(cartItems[0]._id);
   return (
     <div className="cart-wrapper" ref={cartRef}>
       <div className="cart-container">
@@ -64,7 +64,7 @@ export default function Cart() {
                         </span>
                       </p>
                     </div>
-                    <button type="button" className="remove-item" onClick={() => {}}>
+                    <button type="button" className="remove-item" onClick={() => onRemove(item)}>
                       <TiDeleteOutline />
                     </button>
                   </div>
