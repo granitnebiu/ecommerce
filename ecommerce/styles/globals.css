@@ -714,8 +714,13 @@ margin-top: 160px;
 .top{
   flex-wrap: wrap;
   gap: 10px;
+}
 
-
+.truncated{
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 .item-desc .bottom{
   margin-top: 30px;

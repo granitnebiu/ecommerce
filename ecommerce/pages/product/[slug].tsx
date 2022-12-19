@@ -27,6 +27,7 @@ export default function ProductDetails({ product, products }: Props) {
           <div className="small-images-container">
             {Object.values(image)?.map((item, i) => (
               <img
+                key={i}
                 src={urlFor(item).url()}
                 className={i === index ? "small-image selected-image" : "small-image"}
                 onMouseEnter={() => setIndex(i)}
